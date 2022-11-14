@@ -6,7 +6,8 @@ public class Employee {
     private String name;
     private int employeeId;
 
-    private ArrayList<Professor> listOfProfessors;
+    private Department department;
+
 
     public Employee(String name, int employeeId) {
         this.name = name;
@@ -31,11 +32,12 @@ public class Employee {
         this.employeeId = employeeId;
     }
 
-    public ArrayList<Professor> getListOfProfessors() {
-        return listOfProfessors;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setListOfProfessors(ArrayList<Professor> listOfProfessors) {
-        this.listOfProfessors = listOfProfessors;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
+    
 }

@@ -15,8 +15,23 @@ public class Department {
         this.courses = new ArrayList<Course>();
     }
 
+    public void addEmployeeToDepartment(Employee employee) {
+        employeeList.add(employee);
+        employee.setDepartment(this);
+    }
 
-    //Getter&Setter
+    public void emptyDepartment() {
+        for (Employee employee : employeeList) {
+            employee.setDepartment(null);
+        }
+        employeeList.clear();
+    }
+
+    public void addCourse(Course course) {
+        courses.add(course);
+        course.setDepartment(this);
+    }
+
     public void setName(String name) {
         this.name = name;
     }

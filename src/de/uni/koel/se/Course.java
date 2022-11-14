@@ -7,30 +7,57 @@ public class Course {
     private int id;
     private String name;
     private int maxCapacity;
-    private boolean isFull;
-    private Professor professor;
-    private TA ta;
+    private boolean isFull = false;
+    private Department department;
+    private ArrayList<Professor> professorList;
     private ArrayList<Student> listOfEnrolledStudents;
+    private ArrayList<Project> listOfProjects;
+    private ArrayList<Exam> listOfExams;
+    private ArrayList<TA> listOfTA;
 
     public Course(int id, String name, int cap, Professor prof) {
         this.id = id;
         this.name = name;
         this.maxCapacity = cap;
-        this.professor = prof;
+        professorList = new ArrayList<Professor>();
+        addProf(prof);
         this.listOfEnrolledStudents = new ArrayList<Student>();
-
+        this.listOfProjects = new ArrayList<Project>();
+        this.listOfExams = new ArrayList<Exam>();
+        listOfExams.add(new Exam(new Question(1, "ExampleQuestion", 10), 50));
+        this.listOfTA = new ArrayList<TA>();
     }
 
-
     public void enroll(Student student) {
-
+        listOfEnrolledStudents.add(student);
     }
 
     public void apply(TA ta) {
 
     }
 
-    //Getter&Setter
+    public void addTA(TA ta) {
+        listOfTA.add(ta);
+    }
+
+    public void addProf(Professor prof) {
+        if (professorList.size() < 3) {
+            professorList.add(prof);
+            prof.addCourse(this);
+        } else {
+            System.out.println("Max Number of Profs reached");
+        }
+    }
+
+    public void addExam(Exam exam) {
+        listOfExams.add(exam);
+    }
+
+    public void addProject(Project project) {
+        listOfProjects.add(project);
+        project.setCourse(this);
+    }
+
     public int getId() {
         return id;
     }
@@ -51,8 +78,8 @@ public class Course {
         return maxCapacity;
     }
 
-    public void setMaxCapacity(int maxCapacity) {
-        this.maxCapacity = maxCapacity;
+    public void setMaxCap(int max) {
+        this.maxCapacity = max;
     }
 
     public boolean isFull() {
@@ -63,14 +90,6 @@ public class Course {
         isFull = full;
     }
 
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }
-
     public ArrayList<Student> getListOfEnrolledStudents() {
         return listOfEnrolledStudents;
     }
@@ -79,11 +98,43 @@ public class Course {
         this.listOfEnrolledStudents = listOfEnrolledStudents;
     }
 
-    public TA getTa() {
-        return ta;
+    public ArrayList<Professor> getProf() {
+        return professorList;
     }
 
-    public void setTa(TA ta) {
-        this.ta = ta;
+    public void setProfessorList(ArrayList<Professor> professorList) {
+        this.professorList = professorList;
+    }
+
+    public ArrayList<Project> getListOfProjects() {
+        return listOfProjects;
+    }
+
+    public void setListOfProjects(ArrayList<Project> listOfProjects) {
+        this.listOfProjects = listOfProjects;
+    }
+
+    public ArrayList<Exam> getListOfExams() {
+        return listOfExams;
+    }
+
+    public void setListOfExams(ArrayList<Exam> listOfExams) {
+        this.listOfExams = listOfExams;
+    }
+
+    public ArrayList<TA> getTA() {
+        return listOfTA;
+    }
+
+    public void setTA(ArrayList<TA> listOfTA) {
+        this.listOfTA = listOfTA;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
